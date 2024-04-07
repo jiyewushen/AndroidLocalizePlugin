@@ -100,6 +100,20 @@ public final class TranslatorService {
           consumer.accept(translatedText));
     });
   }
+  public static boolean isNumeric(String input) {
+    if (input == null || input.isEmpty()) {
+      return false;
+    }
+
+    for (char c : input.toCharArray()) {
+      if (!Character.isDigit(c)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
 
   public String doTranslate(@NotNull Lang fromLang, @NotNull Lang toLang, @NotNull String text) {
     LOG.info(String.format("doTranslate fromLang: %s, toLang: %s, text: %s", fromLang, toLang, text));
@@ -113,7 +127,7 @@ public final class TranslatorService {
     }
 
     // Arabic numbers skip translation
-    if (StringUtils.isNumeric(text)) {
+    if (isNumeric(text)) {
       return text;
     }
 

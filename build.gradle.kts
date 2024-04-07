@@ -8,9 +8,9 @@ plugins {
   // Java support
   id("java")
   // Gradle IntelliJ Plugin
-  id("org.jetbrains.intellij") version "1.13.3"
+  id("org.jetbrains.intellij") version "1.17.3"
   // Gradle Changelog Plugin
-  id("org.jetbrains.changelog") version "2.1.2"
+  id("org.jetbrains.changelog") version "2.2.0"
 }
 
 group = properties("pluginGroup")
@@ -23,12 +23,10 @@ repositories {
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
-  pluginName.set(properties("pluginName"))
-  version.set(properties("platformVersion"))
-  type.set(properties("platformType"))
-
-  // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-  plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
+  pluginName.set("AndroidLocalize")
+  version.set("2023.3")
+  type.set("IC")
+  plugins.set(listOf("com.intellij.java"))
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
@@ -116,7 +114,9 @@ dependencies {
   annotationProcessor("com.google.auto.service:auto-service:1.1.1")
 
   implementation("com.google.code.gson:gson:2.10.1")
-  implementation("com.aliyun:alimt20181012:1.0.3")
+//  implementation("com.aliyun:alimt20181012:1.3.0")
+//  implementation("com.aliyun:alibabacloud-alimt20181012:1.0.0")
+//  implementation("com.aliyun:aliyun-java-sdk-alimt:3.2.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
